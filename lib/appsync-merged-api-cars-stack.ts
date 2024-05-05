@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as appsync from 'aws-cdk-lib/aws-appsync';
-import { Construct } from 'constructs';
+import {Construct} from 'constructs';
+import * as path from "node:path";
 
 export class AppsyncMergedApiCarsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -9,6 +10,18 @@ export class AppsyncMergedApiCarsStack extends cdk.Stack {
     const carAssemblyApi = new appsync.GraphqlApi(this, 'car-manufacturing-api', {
       name: 'Car Assembly API',
       definition: appsync.Definition.fromFile('car-manufacturing.schema.graphql'),
+    });
+
+    const carAssemblyNoneDataSource = new appsync.NoneDataSource(this, 'car-none-data-source', {
+      api: carAssemblyApi,
+    });
+
+    carAssemblyApi.createResolver('get-car-resolver', {
+      typeName: 'Query',
+      fieldName: 'getCar',
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+      code: appsync.Code.fromAsset(path.join('src', 'car-assembly', 'resolvers', 'get-car.js')),
+      dataSource: carAssemblyNoneDataSource,
     });
 
     const partsManufacturingApi = new appsync.GraphqlApi(this, 'parts-manufacturing-api', {
