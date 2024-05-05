@@ -1,16 +1,16 @@
 import * as cdk from 'aws-cdk-lib';
+import * as appsync from 'aws-cdk-lib/aws-appsync';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class AppsyncMergedApiCarsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'AppsyncMergedApiCarsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new appsync.GraphqlApi(this, 'wheely-api', {
+      name: 'Wheely API',
+      definition: appsync.Definition.fromSourceApis({
+        sourceApis: [],
+      }),
+    });
   }
 }
