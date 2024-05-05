@@ -1,0 +1,8 @@
+type Part {
+    id: ID!
+    name: String!
+}
+
+type Query {
+    getPart(id: ID!): Part
+}

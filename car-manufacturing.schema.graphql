@@ -1,0 +1,10 @@
+type Car {
+    id: ID!
+    make: String!
+    model: String!
+#    parts: [Part!]!
+}
+
+type Query {
+    getCar(id: ID!): Car
+}
