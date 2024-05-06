@@ -9,7 +9,7 @@ export class AppsyncMergedApiCarsStack extends cdk.Stack {
 
     const carAssemblyApi = new appsync.GraphqlApi(this, 'car-manufacturing-api', {
       name: 'Car Assembly API',
-      definition: appsync.Definition.fromFile('car-manufacturing.schema.graphql'),
+      definition: appsync.Definition.fromFile('car-assembly.schema.graphql'),
     });
 
     const carAssemblyNoneDataSource = new appsync.NoneDataSource(this, 'car-none-data-source', {
@@ -26,7 +26,7 @@ export class AppsyncMergedApiCarsStack extends cdk.Stack {
 
     const partsManufacturingApi = new appsync.GraphqlApi(this, 'parts-manufacturing-api', {
       name: 'Parts Manufacturing API',
-      definition: appsync.Definition.fromFile('parts-assembly.schema.graphql'),
+      definition: appsync.Definition.fromFile('parts-manufacturing.schema.graphql'),
     });
 
     const partsManufacturingNoneDataSource = new appsync.NoneDataSource(this, 'parts-manufacturing-none-data-soruce', {

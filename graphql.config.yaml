@@ -1,0 +1,5 @@
+projects:
+  car-assembly:
+    schema: './car-assembly.schema.graphql'
+  parts-manufacturing:
+    schema: './parts-manufacturing.schema.graphql'
