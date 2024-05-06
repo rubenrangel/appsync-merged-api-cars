@@ -1,10 +1,15 @@
 directive @canonical on FIELD_DEFINITION | OBJECT
 
+# Owned by the Parts Manufacturing AppSync API
+type Part {
+    id: ID!
+}
+
 type Car @canonical {
     id: ID!
     make: String!
     model: String!
-#    parts: [Part!]!
+    parts: [Part!]!
 }
 
 type Query {

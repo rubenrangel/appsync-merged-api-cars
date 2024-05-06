@@ -1,5 +1,10 @@
 directive @canonical on FIELD_DEFINITION | OBJECT
 
+# Owned by the Car Assembly AppSync API
+type Car {
+    parts: [Part!]! @canonical
+}
+
 type Part @canonical {
     id: ID!
     name: String!

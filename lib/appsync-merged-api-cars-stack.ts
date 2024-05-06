@@ -39,7 +39,15 @@ export class AppsyncMergedApiCarsStack extends cdk.Stack {
       runtime: appsync.FunctionRuntime.JS_1_0_0,
       code: appsync.Code.fromAsset(path.join('src', 'parts-manufacturing', 'resolvers', 'get-part.js')),
       dataSource: partsManufacturingNoneDataSource,
-    })
+    });
+
+    partsManufacturingApi.createResolver('car-parts-resolver', {
+      typeName: 'Car',
+      fieldName: 'parts',
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+      code: appsync.Code.fromAsset(path.join('src', 'parts-manufacturing', 'resolvers', 'car-parts.js')),
+      dataSource: partsManufacturingNoneDataSource,
+    });
 
     new appsync.GraphqlApi(this, 'wheely-api', {
       name: 'Wheely API',
