@@ -1,8 +1,10 @@
-type Part {
+directive @canonical on FIELD_DEFINITION | OBJECT
+
+type Part @canonical {
     id: ID!
     name: String!
 }
 
 type Query {
-    getPart(id: ID!): Part
+    getPart(id: ID!): Part @canonical
 }

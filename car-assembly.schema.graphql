@@ -1,4 +1,6 @@
-type Car {
+directive @canonical on FIELD_DEFINITION | OBJECT
+
+type Car @canonical {
     id: ID!
     make: String!
     model: String!
@@ -6,5 +8,5 @@ type Car {
 }
 
 type Query {
-    getCar(id: ID!): Car
+    getCar(id: ID!): Car @canonical
 }
