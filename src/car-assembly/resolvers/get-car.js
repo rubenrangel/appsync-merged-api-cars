@@ -5,13 +5,15 @@ export function request(ctx) {
     {
       id: "1",
       make: "Moto",
-      model: "Turbo"
+      model: "Turbo",
+      partIds: ["1", "4"],
     },
     {
       id: "2",
       make: "Cruiser",
-      model: "Liner"
-    }
+      model: "Liner",
+      partIds: ["1", "2", "3"],
+    },
   ];
 
   return {
