@@ -29,6 +29,18 @@ export class AppsyncMergedApiCarsStack extends cdk.Stack {
       definition: appsync.Definition.fromFile('parts-assembly.schema.graphql'),
     });
 
+    const partsManufacturingNoneDataSource = new appsync.NoneDataSource(this, 'parts-manufacturing-none-data-soruce', {
+      api: partsManufacturingApi,
+    });
+
+    partsManufacturingApi.createResolver('get-part-resolver', {
+      typeName: 'Query',
+      fieldName: 'getPart',
+      runtime: appsync.FunctionRuntime.JS_1_0_0,
+      code: appsync.Code.fromAsset(path.join('src', 'parts-manufacturing', 'resolvers', 'get-part.js')),
+      dataSource: partsManufacturingNoneDataSource,
+    })
+
     new appsync.GraphqlApi(this, 'wheely-api', {
       name: 'Wheely API',
       definition: appsync.Definition.fromSourceApis({
