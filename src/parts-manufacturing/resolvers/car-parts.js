@@ -1,6 +1,7 @@
+/**
+ * This resolver assumes the part IDs will be a field from the parent field OR be included in the stash.
+ */
 export function request(ctx) {
-    const { id } = ctx.args;
-
     /**
      * @type {string[] | undefined}
      */
