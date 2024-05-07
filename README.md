@@ -1,8 +1,10 @@
-# Welcome to your CDK TypeScript project
+# appsync-merged-api-cars
 
-This is a blank project for CDK development with TypeScript.
+A simple CDK app demonstrating [AppSync Merged APIs](https://docs.aws.amazon.com/appsync/latest/devguide/merged-api.html). Specifically, this shows the resolution of the field of a type in one AppSync API resolving to a type in another AppSync API.  
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Infrastructure
+
+Both AppSync APIs use the `APPSYNC_JS` runtime and `None` data sources, for simplicity.
 
 ## Useful commands
 
